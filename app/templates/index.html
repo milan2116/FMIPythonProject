@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Welcome to Flashcards Master</h1>
+    <a href="{{ url_for('create_deck') }}" class="btn btn-primary">Create New Deck</a>
+    <h2>Your Decks</h2>
+    {% for deck in current_user.decks %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ deck.title }}</h5>
+                <p class="card-text">{{ deck.description }}</p>
+                <a href="{{ url_for('view_deck', deck_id=deck.id) }}" class="btn btn-info">View Deck</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

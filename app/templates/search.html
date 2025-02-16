@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Search Results for "{{ query }}"</h1>
+    <h2>Decks</h2>
+    {% if decks %}
+        {% for deck in decks %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ deck.title }}</h5>
+                    <p class="card-text">{{ deck.description }}</p>
+                    <a href="{{ url_for('view_deck', deck_id=deck.id) }}" class="btn btn-info">View Deck</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No decks found.</p>
+    {% endif %}
+
+    <h2>Flashcards</h2>
+    {% if flashcards %}
+        {% for flashcard in flashcards %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ flashcard.question }}</h5>
+                    <p class="card-text">{{ flashcard.answer }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No flashcards found.</p>
+    {% endif %}
+{% endblock %}

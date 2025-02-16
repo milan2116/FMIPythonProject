@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Review Flashcard</h1>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ flashcard.question }}</h5>
+            <p id="answer" class="card-text" style="display: none; transition: opacity 0.3s ease;">{{ flashcard.answer }}</p>
+            <button id="showAnswerButton" class="btn btn-info">Show Answer</button>
+        </div>
+    </div>
+    <form method="POST" class="mt-3">
+        <button type="submit" name="difficulty" value="1" class="btn btn-success">Easy</button>
+        <button type="submit" name="difficulty" value="2" class="btn btn-warning">Medium</button>
+        <button type="submit" name="difficulty" value="3" class="btn btn-danger">Hard</button>
+    </form>
+
+    <script>
+        // JavaScript to toggle the visibility of the answer
+        const showAnswerButton = document.getElementById('showAnswerButton');
+        const answer = document.getElementById('answer');
+
+        showAnswerButton.addEventListener('click', toggleAnswer);
+
+        // Add keyboard shortcut (spacebar) to toggle the answer
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space') {
+                toggleAnswer();
+            }
+        });
+
+        function toggleAnswer() {
+            if (answer.style.display === 'none') {
+                answer.style.display = 'block'; 
+                answer.style.opacity = '1';  // Fade in
+                showAnswerButton.textContent = 'Hide Answer'; 
+            } else {
+                answer.style.opacity = '0';  // Fade out
+                setTimeout(() => {
+                    answer.style.display = 'none';  // Hide the answer after fade out
+                }, 300);  // Match the transition duration
+                showAnswerButton.textContent = 'Show Answer';  // Change button text
+            }
+        }
+    </script>
+{% endblock %}

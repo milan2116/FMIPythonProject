@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Reminders</h1>
+    <p>Set up reminders for your daily reviews.</p>
+    <form method="POST">
+        <div class="form-group">
+            <label for="reminder_time">Reminder Time</label>
+            <input type="time" class="form-control" id="reminder_time" name="reminder_time" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Set Reminder</button>
+    </form>
+{% endblock %}
